@@ -1,0 +1,22 @@
+<!-- TODO: figure out if the <nav> should go inside of a <header> element. -->
+<nav class="docs-navbar-header" aria-label="Top Toolbar">
+  <a mat-button routerLink="/" aria-label="Angular Material">
+    <app-logo matButtonIcon/>
+    Home
+  </a>
+
+  @for (key of sectionKeys; track key) {
+    <a mat-button class="docs-navbar-hide-small"
+       [routerLink]="key"
+       routerLinkActive="docs-navbar-header-item-selected">{{sections[key].name}}</a>
+  }
+  <div class="flex-spacer"></div>
+  <theme-picker></theme-picker>
+</nav>
+
+<nav class="docs-navbar docs-navbar-show-small" aria-label="Section Nav Bar">
+  @for (key of sectionKeys; track key) {
+    <a mat-button class="docs-navbar-link"
+       [routerLink]="key">{{sections[key].name}}</a>
+  }
+</nav>
