@@ -2,12 +2,30 @@ import {Routes} from '@angular/router';
 import {
   CanActivateComponentSidenav
 } from './pages/component-sidenav/component-sidenav-can-load-guard';
+import {AuthGuard} from "./core/auth/guards/auth.guard";
+import {NoAuthGuard} from "./core/auth/guards/noAuth.guard";
+import {SignInComponent} from "./core/auth/sign-in/sign-in.component";
+import {LayoutComponent} from "./core/layout/layout.component";
+import {Homepage} from "./pages/homepage";
 
 export const MATERIAL_DOCS_ROUTES: Routes = [
-  {
+  {path: 'sign-in', component: SignInComponent},
+
+  /*{
     path: '',
+    canActivate: [AuthGuard],
     pathMatch: 'full',
     loadComponent: () => import('./pages/homepage').then(m => m.Homepage)
+  },*/
+  {
+    path: '',
+    canActivate: [AuthGuard],
+    component: LayoutComponent,
+    pathMatch: 'full',
+    /*children: [
+      {path: 'dashboard', loadChildren: () => import('./pages/homepage').then(m => m.Homepage)},
+
+    ]*/
   },
   {path: 'categories', redirectTo: '/components/categories'},
   {path: 'cdk', pathMatch: 'full', redirectTo: '/cdk/categories'},

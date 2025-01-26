@@ -45,13 +45,10 @@ import {
 } from '../component-category-list/component-category-list';
 import {ComponentPageHeader} from '../component-page-header/component-page-header';
 import {
-  ComponentApi,
-  ComponentExamples,
-  ComponentOverview,
-  ComponentViewer,
   ComponentViewerModule
 } from '../component-viewer/component-viewer';
 import {ComponentStyling} from '../component-viewer/component-styling';
+import {TestComponent} from "../../features/test/test.component";
 
 // These constants are used by the ComponentSidenav for orchestrating the MatSidenav in a responsive
 // way. This includes hiding the sidenav, defaulting it to open, changing the mode from over to
@@ -159,17 +156,16 @@ const routes: Routes = [{
         {path: '', component: ComponentCategoryList},
       ],
     },
-    {
-      path: ':id',
-      component: ComponentViewer,
-      children: [
-        {path: '', redirectTo: 'overview', pathMatch: 'full'},
-        {path: 'overview', component: ComponentOverview, pathMatch: 'full'},
-        {path: 'api', component: ComponentApi, pathMatch: 'full'},
-        {path: 'styling', component: ComponentStyling, pathMatch: 'full'},
-        {path: 'examples', component: ComponentExamples, pathMatch: 'full'},
-      ],
-    },
+    {path: 'overview', component: TestComponent, data: {'name': 'Market Overview'}},
+    {path: 'indices', component: TestComponent, data: {'name': 'Market Indices'}},
+    {path: 'stocks', component: TestComponent, data: {'name': 'Market Stocks'}},
+    {path: 'test', component: TestComponent, data: {'name': 'Test 1'}},
+    {path: 'deposit', component: TestComponent, data: {'name': 'Deposit'}},
+    {path: 'withdraw', component: TestComponent, data: {'name': 'Withdraw'}},
+    {path: 'ipo', component: TestComponent, data: {'name': 'IPO'}},
+    {path: 'tax-certification', component: TestComponent, data: {'name': 'Tax Certificate'}},
+    {path: 'product-switch', component: TestComponent, data: {'name': 'Product Switch'}},
+    {path: '**', redirectTo: '/404'},
     {path: '**', redirectTo: '/404'}
   ]
 }];
